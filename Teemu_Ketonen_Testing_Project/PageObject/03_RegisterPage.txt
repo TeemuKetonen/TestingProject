@@ -1,0 +1,87 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation User Registration Test scenario with verification, valid and invalid credentials.
+
+Documentation	
+
+Precondition 	Open browser
+Post condition 	Close all browsers
+Tags	Sinup, TS-2-Signup
+
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+SignupUrl = https://gitlab.com/users/sign_up
+FirstName= XY
+LastName=ZYZY
+Username=XYZ
+Email: XY.ZY@GMAIL.COM
+Invalid_email: xygmailcom
+Password=***********
+Invalid_Username= XY
+Invalid_Password= ***
+Invalid_Password2= min 129 characters
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+
+# Positive Test examples
+
+SignUp With valid information 	
+- Remember credentials which you are going to use for whole application testing 
+
+	Navigate to Signup page https://gitlab.com/users/sign_up
+	Input FirstName	
+	Input LastName
+	Input Username
+	Input email
+	Input Password
+	Press Continue
+	Email verification page should popup
+
+
+# Negative Test examples
+
+SignUp with password shorter than 8 characters
+
+	Navigate to Signup page https://gitlab.com/users/sign_up
+	Input FirstName	
+	Input LastName
+	Input Username
+	Input email
+	Input Invalid_Password 
+	Press Continue
+	Error message should say that the password is too weak
+
+SignUp with password longer than 129 characters
+
+	Navigate to Signup page https://gitlab.com/users/sign_up
+	Input FirstName	
+	Input LastName
+	Input Username
+	Input email
+	Input Invalid_Password2 
+	Press Continue
+	Error message should say that the password is too long
+
+
+SignUp with invalid email 
+
+	Navigate to Signup page https://gitlab.com/users/sign_up
+	Input FirstName	
+	Input LastName
+	Input Username
+	Input Invalid_email
+	Input Password 
+	Press Continue
+	Error message should say that the email is not valid
+

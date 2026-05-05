@@ -1,0 +1,71 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Write Dcocumentation Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Documentation	
+
+Pre Condition	User has registered and created a new project to get to the project page 
+Post Condition	Close all browsers
+Tags TS-3-Projectpage
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+ProjectName = TestProject
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create blank project
+		Press Create blank project
+		Input ProjectName
+		Select Project URL 
+		Create project
+		Blank project should be created successfully
+		Valide that message is showing Project 'First project ' was successfully created.
+
+	Create template project 
+		Press create from template
+		Select template
+		Input ProjectName
+		Create Project
+		Template project should be created successfully
+
+	Update name of template project
+		Loacte to https://gitlab.com/dashboard/projects
+		Open template project
+		Choose "edit" from three dots on right
+		Change ProjectName
+		Save Changes
+		Message should say that the name was successfully updated
+
+	Delete template project
+		Loacte to https://gitlab.com/dashboard/projects
+		Open template project
+		Choose "Delete" from three dots on the right side
+		Enter the confirmation text
+		Press Delete
+		Project should have moved to pending deletion
+
+
+	
+
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Create a blank project with the previous same name
+		Create new project
+		Input previous ProjectName
+		Select Project URL 
+		Create project
+		Error message should display that the name is already taken
+
+
